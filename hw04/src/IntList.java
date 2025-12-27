@@ -69,7 +69,15 @@ public class IntList {
      */
     public static IntList incrIterativeNondestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        IntList nList = new IntList(0, null);
+        IntList p = L;
+        IntList q = nList;
+        while (p != null) {
+            q.rest = new IntList(p.first + x, null);
+            p = p.rest;
+            q = q.rest;
+        }
+        return nList.rest;
     }
 
     /**
@@ -80,7 +88,12 @@ public class IntList {
      */
     public static IntList incrIterativeDestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        IntList p = L;
+        while (p != null) {
+            p.first += x;
+            p = p.rest;
+        }
+        return L;
     }
 
     /**
@@ -89,7 +102,16 @@ public class IntList {
      */
     public static IntList concatenate(IntList L1, IntList L2) {
         // TODO: Fill in this code
-        return null;
+
+        if (L1 == null) {
+            return L2;
+        }
+        if (L1.rest == null) {
+            L1.rest = L2;
+        } else {
+            concatenate(L1.rest, L2);
+        }
+        return L1;
     }
 
     /*
@@ -103,7 +125,12 @@ public class IntList {
      */
     public int sum() {
         // Optional: Fill in this code
-        return 0;
+        IntList p = this;
+        int num = 0;
+        while (p != null) {
+            num += p.first;
+        }
+        return num;
     }
 
     /**
